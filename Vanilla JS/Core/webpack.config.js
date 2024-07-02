@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { template } = require("lodash");
-const ModuleFederationPlugin = require("webpack").container;
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 module.exports = {
   mode: "development", // dev mode
@@ -9,10 +9,9 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "Mfone",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./mfOneIndex": "./src/index.js",
+      name: "core",
+      remotes: {
+        mfone: "mfone@http://localhost:8081/remoteEntry.js", // list of file sub application exposed
       },
     }),
     new HtmlWebpackPlugin({
