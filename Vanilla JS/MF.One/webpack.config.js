@@ -11,8 +11,9 @@ module.exports = {
       name: "mfone",
       filename: "remoteEntry.js", // have details of all file that are exposed
       exposes: {
-        "./MfOneIndex": "./src/index.js", // list of file exposed to host
+        "./MfOneIndex": "./src/bootstrap.js", // list of file exposed to host
       },
+      shared: { lodash: { singleton: true } },
     }),
     new HtmlWebpackPlugin({
       template: "index.html", // To inject webpack created js into index.html

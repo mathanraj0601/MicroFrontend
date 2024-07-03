@@ -13,6 +13,7 @@ module.exports = {
       remotes: {
         mfone: "mfone@http://localhost:8081/remoteEntry.js", // list of file sub application exposed
       },
+      shared: { lodash: { singleton: true } },
     }),
     new HtmlWebpackPlugin({
       template: "index.html", // To inject webpack created js into index.html
