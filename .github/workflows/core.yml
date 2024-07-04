@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - run: npm install
       - run: npm run build
@@ -25,11 +25,28 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: "Blob upload"
-        uses: azure/CLI@v1
+  
+      - uses: bacongobbler/azure-blob-storage-upload@main
         with:
-          inlineScript: |
-           az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
+          source_dir: dist
+          container_name: $web
+          connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
+          overwrite: 'true'
+          sync: 'true'
+
+      # az copy not working
+      # - name: "Blob upload"
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+      #      az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
+
+      # Az storage blob sync not workint
+      # - name: "Blob upload"
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+      #       az storage blob sync --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --auth-mode key -c "$web" -s ./dist
+
 
 
