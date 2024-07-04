@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - develop
-    # paths: 
-    #   - MicroFrontend/Framework/core/**
-
+    paths: 
+      - Framework/core/**
+      
 defaults:
-  working-directory: Framework/core
+  run:
+    working-directory: Framework/core
 
 jobs:
   build:
@@ -16,6 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
       - run: npm install
       - run: npm run build
       - run: echo "finished deployed"
