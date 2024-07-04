@@ -30,4 +30,5 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob sync --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --auth-mode key -d '$web' -s ./dist
+            az storage blob sync --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --auth-mode key -c "$web" -s ./dist
+
