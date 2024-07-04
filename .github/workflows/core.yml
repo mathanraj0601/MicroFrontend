@@ -30,6 +30,6 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-           az storage blob sync -c mycontainer --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }} -s dist
+           azcopy sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
 
