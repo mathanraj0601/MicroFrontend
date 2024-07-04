@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - develop
-    paths: 
-      - MicroFrontend/Framework/core/**
+    # paths: 
+    #   - MicroFrontend/Framework/core/**
 
 defaults:
   working-directory: Framework/core
