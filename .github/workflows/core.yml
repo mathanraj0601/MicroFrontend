@@ -30,5 +30,6 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob sync -c "$web" --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --sas-token {{ secret.AZURE_STORAGE_SAS_TOKEN }} -s "./dist"
+           az storage blob sync -c $web --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }}  --connection-string {{ secret.AZURE_STORAGE_CONNECTION_STRING }}  -s dist
+
 
