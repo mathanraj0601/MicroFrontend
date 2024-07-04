@@ -31,7 +31,6 @@ jobs:
           source_dir: dist
           container_name: $web
           connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
-          overwrite: 'true'
           sync: 'true'
 
       # az copy not working
