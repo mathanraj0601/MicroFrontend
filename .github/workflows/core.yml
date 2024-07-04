@@ -30,6 +30,6 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-           azcopy sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
+           az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
 
