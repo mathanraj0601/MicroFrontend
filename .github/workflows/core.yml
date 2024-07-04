@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - develop
-    paths: 
+    paths:
       - Framework/core/**
-      
+
 defaults:
   run:
     working-directory: Framework/core
@@ -17,7 +17,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - run: npm install
       - run: npm run build
-      - run: echo "finished deployed"
+
+      - name: "Azure login"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: "Blob upload"
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob sync --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --auth-mode key -d '$web' -s ./dist
