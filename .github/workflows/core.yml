@@ -42,11 +42,11 @@ jobs:
            az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
       # Az storage blob sync not workint
-      # - name: "Blob upload"
-      #   uses: azure/CLI@v1
-      #   with:
-      #     inlineScript: |
-      #       az storage blob sync --account-name {{ secrets.AZURE_STORAGE_ACCOUNT }} --auth-mode key -c "$web" -s ./dist
+      - name: "Blob upload"
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob sync --container $web --account-name {{ secret.AZURE_ACCOUNT_NAME }} --account-key {{ secret.AZURE_ACCOUNT_KEY }} --source dist
 
 
 
