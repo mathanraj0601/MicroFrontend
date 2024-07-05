@@ -26,19 +26,20 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
   
-      - uses: bacongobbler/azure-blob-storage-upload@main
-        with:
-          source_dir: dist
-          container_name: $web
-          connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
-          sync: 'true'
+      # - uses: bacongobbler/azure-blob-storage-upload@main
+      #   with:
+      #     source_dir: dist
+      #     container_name: $web
+      #     connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
+      #     sync: 'true'
 
       # az copy not working
-      # - name: "Blob upload"
-      #   uses: azure/CLI@v1
-      #   with:
-      #     inlineScript: |
-      #      az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
+      - name: "Blob upload"
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+           az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
       # Az storage blob sync not workint
       # - name: "Blob upload"
