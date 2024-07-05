@@ -34,12 +34,12 @@ jobs:
       #     sync: 'true'
 
       # az copy not working
-      - name: "Blob upload"
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-           az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
+      # - name: "Blob upload"
+      #   uses: azure/cli@v2
+      #   with:
+      #     azcliversion: latest
+      #     inlineScript: |
+      #      az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
       # Az storage blob sync not workint
       - name: "Blob upload"
