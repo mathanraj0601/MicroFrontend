@@ -48,5 +48,5 @@ jobs:
         with:
          azcliversion: latest
          inlineScript: |
-          az storage blob upload-batch --destination '$web' --source ./build --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
+          az storage blob upload-batch --destination '$web' --source './build' --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
 
