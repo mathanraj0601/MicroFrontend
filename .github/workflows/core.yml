@@ -45,6 +45,7 @@ jobs:
       - name: "Blob upload"
         uses: azure/cli@v2
         with:
+         azcliversion: latest
          inlineScript: |
           az storage blob delete-batch --source '$web' --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
           az storage blob upload-batch --destination '$web' --source ./dist --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
