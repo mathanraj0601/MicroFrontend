@@ -49,9 +49,5 @@ jobs:
          azcliversion: latest
          inlineScript: |
           cd ./Framework/core
-          echo "Current working directory:"
-          pwd
-          echo "Listing build directory:"
-          ls -la
-          az storage blob upload-batch --destination "$web" --source "build" --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
+          az storage blob upload-batch --destination '$web' --source ./build --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
 
