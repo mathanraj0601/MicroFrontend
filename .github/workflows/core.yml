@@ -41,12 +41,12 @@ jobs:
       #     inlineScript: |
       #      az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
 
-      # Az storage blob sync not workint
+      # Az storage blob sync is not working
       - name: "Blob upload"
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob sync --container $web --account-name {{ secrets.AZURE_ACCOUNT_NAME }} --account-key {{ secrets.AZURE_ACCOUNT_KEY }} --source dist
+            az storage blob upload-batch --source dist --destination {{ secrets.AZURE_BLOB_URL }} {{ secrets.AZURE_BLOB_SAS_TOKEN }}
 
 
 
