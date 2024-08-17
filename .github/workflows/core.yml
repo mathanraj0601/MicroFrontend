@@ -20,6 +20,7 @@ jobs:
 
       - run: npm install
       - run: npm run build
+      - run : ls
 
       # - name: "Azure login"
       #   uses: azure/login@v1
@@ -48,5 +49,5 @@ jobs:
          azcliversion: latest
          inlineScript: |
           az storage blob delete-batch --source '$web' --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
-          az storage blob upload-batch --destination '$web' --source ./build --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
+          az storage blob upload-batch --destination '$web' --source build --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
 
