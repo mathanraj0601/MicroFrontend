@@ -48,6 +48,7 @@ jobs:
         with:
          azcliversion: latest
          inlineScript: |
+          cd ./Framework/core
           echo "Current working directory:"
           pwd
           echo "Listing build directory:"
