@@ -43,10 +43,10 @@ jobs:
 
       # Az storage blob sync is not working
       - name: "Blob upload"
-        uses: azure/CLI@v1
+        uses: azure/cli@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --source dist --destination {{ secrets.AZURE_BLOB_URL }} {{ secrets.AZURE_BLOB_SAS_TOKEN }}
+            az storage blob upload-batch --source dist --destination $web --sas-token {{ secrets.AZURE_BLOB_SAS_TOKEN }}
 
 
 
