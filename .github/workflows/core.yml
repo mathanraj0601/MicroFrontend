@@ -51,6 +51,6 @@ jobs:
           echo "Current working directory:"
           pwd
           echo "Listing build directory:"
-          ls -la build
+          ls -la
           az storage blob upload-batch --destination "$web" --source "build" --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
 
