@@ -7,6 +7,7 @@ on:
     paths:
       - Framework/core/**
 
+# To move to a particular folder
 defaults:
   run:
     working-directory: Framework/core
@@ -20,34 +21,13 @@ jobs:
 
       - run: npm install
       - run: npm run build
-      - run : ls
 
-      # - name: "Azure login"
-      #   uses: azure/login@v1
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-  
-      # - uses: bacongobbler/azure-blob-storage-upload@main
-      #   with:
-      #     source_dir: dist
-      #     container_name: $web
-      #     connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
-      #     sync: 'true'
-
-      # az copy not working
-      # - name: "Blob upload"
-      #   uses: azure/cli@v2
-      #   with:
-      #     azcliversion: latest
-      #     inlineScript: |
-      #      az storage blob sync "dist" {{ secret.AZURE_BLOB_SAS_URL }}
-
-      # Az storage blob sync is not working
       - name: "Blob upload"
         uses: azure/cli@v2
         with:
          azcliversion: latest
          inlineScript: |
           cd ./Framework/core
+          az storage blob delete-batch  --source '$web' --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
           az storage blob upload-batch --destination '$web' --source ./build --connection-string ${{ secrets.AZURE_CORE_CONNECTION_STRING }}
 
